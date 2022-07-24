@@ -6,11 +6,14 @@ import {
   Param,
   Patch,
   Post,
+  // UsePipes,
+  // ValidationPipe,
 } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { ParseUUIDPipe } from '@nestjs/common';
 import { CreateCarDto } from './dto/create-car.dto';
 
+// @UsePipes(ValidationPipe) // using at controller level
 @Controller('api/v1/cars')
 export class CarsController {
   constructor(private readonly carsService: CarsService) {}
@@ -26,6 +29,7 @@ export class CarsController {
   }
 
   @Post()
+  // @UsePipes(ValidationPipe) // using at method level
   store(@Body() createCarDto: CreateCarDto) {
     return createCarDto;
   }
